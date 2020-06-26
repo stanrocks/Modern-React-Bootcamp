@@ -11,7 +11,7 @@ class ExerciseClicker extends Component {
 	}
 
 	tryLuck() {
-		let rnd = Math.floor(Math.random() * 10);
+		let rnd = Math.floor(Math.random() * 10) + 1;
 		this.setState({ number: rnd });
 		if (rnd === 7) {
 			this.setState({ winner: true });
@@ -22,6 +22,8 @@ class ExerciseClicker extends Component {
 		return (
 			<div>
 				<h1>Number is {this.state.number}</h1>
+				{/* if left part is true - then right part executes. almost like if -> then: */}
+				{/* {this.state.winner && <h1>YOU WIN!!!</h1>} */}
 				{this.state.winner ? <h1>YOU WIN!</h1> : <button onClick={this.tryLuck}>Random Number</button>}
 			</div>
 		);
