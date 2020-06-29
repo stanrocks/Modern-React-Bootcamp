@@ -1,0 +1,6 @@
+.Box {
+  display: flex;
+  width: 16vw;
+  height: 16vh;
+  background-color: saddlebrown;
+}
