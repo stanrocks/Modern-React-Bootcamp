@@ -28,36 +28,67 @@ class Pallete extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      colors: null,
+      boxesColors: [],
     };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(e) {
+    this.changeTile(e);
+  }
+
+  changeTile(e) {
     console.log('clicked!');
+    console.log(e.target.id);
     console.log(e.target.className);
+    let idx = e.target.id.slice(4);
+    console.log(idx);
+    let currColors = this.state.boxesColors;
+    currColors[idx] = 'black';
+    this.setState({ boxesColors: currColors });
+  }
+
+  generateColors() {
+    let genColors = [];
+    for (let i = 0; i < this.props.numBoxes; i++) {
+      let color = this.props.colorBase[
+        Math.floor(Math.random() * this.props.colorBase.length)
+      ];
+      genColors.push(color);
+    }
+    console.log('gen colors', genColors);
+    return genColors;
+  }
+
+  initColors() {
+    // breaking recursion (bad solution)
+    if (this.state.boxesColors.length === 0) {
+      this.setState({ boxesColors: this.generateColors() });
+      console.log('init colors');
+    }
   }
 
   generateLayout() {
     let elements = [];
     for (let i = 0; i < this.props.numBoxes; i++) {
-      let color = this.props.colorBase[
-        Math.floor(Math.random() * this.props.colorBase.length)
-      ];
       elements.push(
         <Box
           handleClick={this.handleClick}
-          className={`Box Box-${i + 1}`}
-          color={color}
+          className={`Box`}
+          id={`Box-${i}`}
+          color={this.state.boxesColors[i]}
         />
       );
     }
-    // console.log(elements);
     return elements;
   }
 
   render() {
-    return <div className="Box-Container">{this.generateLayout()}</div>;
+    return (
+      <div className="Box-Container">
+        {(this.initColors(), this.generateLayout())}
+      </div>
+    );
   }
 }
 
