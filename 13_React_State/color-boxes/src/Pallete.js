@@ -3,7 +3,7 @@ import Box from './Box';
 
 class Pallete extends Component {
   static defaultProps = {
-    numBoxes: 16,
+    numBoxes: 18,
   };
   constructor(props) {
     super(props);
@@ -32,7 +32,6 @@ class Pallete extends Component {
   render() {
     return (
       <div className="Box-Container">
-        Color boxes should be here
         {this.generateLayout()}
         {/* <Box handleClick={this.handleClick} class={''} /> */}
       </div>

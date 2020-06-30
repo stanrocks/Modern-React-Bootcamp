@@ -1,12 +1,11 @@
 .Box-Container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  height: 100vh;
 }
 
 .Box {
-  /* width: 16vw;
-  height: 16vh; */
-  width: 150px;
-  height: 150px;
+  flex-basis: 16.6666%;
   background-color: saddlebrown;
 }
