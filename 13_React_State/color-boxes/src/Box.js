@@ -5,12 +5,10 @@ class Box extends Component {
   render() {
     return (
       <div>
-        <div className="Box" onClick={this.props.handleClick}>
-          Box 1
-        </div>
-        <div className="Box" onClick={this.props.handleClick}>
-          Box 2
-        </div>
+        <div
+          className={this.props.className}
+          onClick={this.props.handleClick}
+        ></div>
       </div>
     );
   }
