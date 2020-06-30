@@ -30,13 +30,13 @@ class Pallete extends Component {
     this.state = {
       colors: null,
     };
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  // handleClick(e) {
-  //   console.log('clicked!');
-  //   console.log(e);
-  // }
+  handleClick(e) {
+    console.log('clicked!');
+    console.log(e.target.className);
+  }
 
   generateLayout() {
     let elements = [];
@@ -46,7 +46,7 @@ class Pallete extends Component {
       ];
       elements.push(
         <Box
-          // handleClick={this.handleClick}
+          handleClick={this.handleClick}
           className={`Box Box-${i + 1}`}
           color={color}
         />
