@@ -30,13 +30,13 @@ class Pallete extends Component {
     this.state = {
       colors: null,
     };
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e) {
-    console.log('clicked!');
-    console.log(e);
-  }
+  // handleClick(e) {
+  //   console.log('clicked!');
+  //   console.log(e);
+  // }
 
   generateLayout() {
     let elements = [];
@@ -57,12 +57,7 @@ class Pallete extends Component {
   }
 
   render() {
-    return (
-      <div className="Box-Container">
-        {this.generateLayout()}
-        {/* <Box handleClick={this.handleClick} class={''} /> */}
-      </div>
-    );
+    return <div className="Box-Container">{this.generateLayout()}</div>;
   }
 }
 
