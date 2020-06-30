@@ -46,7 +46,7 @@ class Pallete extends Component {
       ];
       elements.push(
         <Box
-          handleClick={this.handleClick}
+          // handleClick={this.handleClick}
           className={`Box Box-${i + 1}`}
           color={color}
         />
