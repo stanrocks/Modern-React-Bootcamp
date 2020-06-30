@@ -3,7 +3,16 @@ import './Box.css';
 
 class Box extends Component {
   render() {
-    return <div className="Box">Box 1</div>;
+    return (
+      <div>
+        <div className="Box" onClick={this.props.handleClick}>
+          Box 1
+        </div>
+        <div className="Box" onClick={this.props.handleClick}>
+          Box 2
+        </div>
+      </div>
+    );
   }
 }
 
