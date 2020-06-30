@@ -7,6 +7,7 @@ class Box extends Component {
       <div
         className={this.props.className}
         onClick={this.props.handleClick}
+        style={{ backgroundColor: this.props.color }}
       ></div>
     );
   }
