@@ -31,7 +31,7 @@ class Pallete extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Box-Container">
         Color boxes should be here
         {this.generateLayout()}
         {/* <Box handleClick={this.handleClick} class={''} /> */}

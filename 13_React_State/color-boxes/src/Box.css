@@ -1,6 +1,12 @@
-.Box {
+.Box-Container {
   display: flex;
-  width: 16vw;
-  height: 16vh;
+  justify-content: center;
+}
+
+.Box {
+  /* width: 16vw;
+  height: 16vh; */
+  width: 150px;
+  height: 150px;
   background-color: saddlebrown;
 }
