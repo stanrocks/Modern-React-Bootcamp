@@ -59,6 +59,7 @@ class Pallete extends Component {
       return (currColors[id] = newColor);
     } else {
       // else - get unique color again recursively, until they are not same
+      console.log('oops! same color, randomizing again!');
       return this.getUniqueColor(id);
     }
   }
