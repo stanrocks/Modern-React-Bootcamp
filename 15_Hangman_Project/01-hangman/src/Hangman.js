@@ -25,7 +25,11 @@ class Hangman extends Component {
     if guessed letters are {a,p,e}, show "app_e" for "apple"
   */
 	guessedWord() {
-		return this.state.answer.split('').map((ltr) => (this.state.guessed.has(ltr) ? ltr : '_'));
+		if (this.state.nWrong < this.props.maxWrong) {
+			return this.state.answer.split('').map((ltr) => (this.state.guessed.has(ltr) ? ltr : '_'));
+		} else {
+			return this.state.answer;
+		}
 	}
 
 	/** handleGuest: handle a guessed letter:
@@ -33,20 +37,26 @@ class Hangman extends Component {
     - if not in answer, increase number-wrong guesses
   */
 	handleGuess(evt) {
-		let ltr = evt.target.value;
-		this.setState((st) => ({
-			guessed: st.guessed.add(ltr),
-			nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
-		}));
+		if (this.state.nWrong < this.props.maxWrong) {
+			let ltr = evt.target.value;
+			this.setState((st) => ({
+				guessed: st.guessed.add(ltr),
+				nWrong: st.nWrong + (st.answer.includes(ltr) ? 0 : 1)
+			}));
+		}
 	}
 
 	/** generateButtons: return array of letter buttons to render */
 	generateButtons() {
-		return 'abcdefghijklmnopqrstuvwxyz'.split('').map((ltr) => (
-			<button value={ltr} onClick={this.handleGuess} disabled={this.state.guessed.has(ltr)} key={ltr}>
-				{ltr}
-			</button>
-		));
+		if (this.state.nWrong < this.props.maxWrong) {
+			return 'abcdefghijklmnopqrstuvwxyz'.split('').map((ltr) => (
+				<button value={ltr} onClick={this.handleGuess} disabled={this.state.guessed.has(ltr)} key={ltr}>
+					{ltr}
+				</button>
+			));
+		} else {
+			return 'You lose';
+		}
 	}
 
 	/** render: render game */
