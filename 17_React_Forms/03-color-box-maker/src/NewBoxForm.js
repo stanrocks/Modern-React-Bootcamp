@@ -9,3 +9,5 @@ class NewBoxForm extends Component {
 		);
 	}
 }
+
+export default NewBoxForm;

@@ -5,3 +5,5 @@ class Box extends Component {
 		return <div style={{ backgroundColor: this.props.color }} />;
 	}
 }
+
+export default Box;

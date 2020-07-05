@@ -31,3 +31,5 @@ class BoxList extends Component {
 		);
 	}
 }
+
+export default BoxList;
