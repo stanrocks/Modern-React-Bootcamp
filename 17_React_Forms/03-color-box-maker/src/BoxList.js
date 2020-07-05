@@ -8,6 +8,12 @@ class BoxList extends Component {
 		this.state = {
 			boxes: []
 		};
+		this.addBox = this.addBox.bind(this);
+	}
+	addBox(box) {
+		this.setState((state) => ({
+			boxes: [ ...state.boxes, box ]
+		}));
 	}
 	renderBoxes() {
 		return (
@@ -23,10 +29,8 @@ class BoxList extends Component {
 	render() {
 		return (
 			<div>
-				<NewBoxForm />
+				<NewBoxForm addBox={this.addBox} />
 				{this.renderBoxes()}
-				{/* also all Boxes go here */}
-				<Box />
 			</div>
 		);
 	}
