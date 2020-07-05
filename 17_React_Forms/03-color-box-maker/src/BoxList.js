@@ -12,9 +12,9 @@ class BoxList extends Component {
 		this.removeBox = this.removeBox.bind(this);
 	}
 
-	addBox(box) {
+	addBox(newBox) {
 		this.setState((state) => ({
-			boxes: [ ...state.boxes, box ]
+			boxes: [ ...state.boxes, newBox ]
 		}));
 	}
 
