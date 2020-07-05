@@ -20,7 +20,7 @@ class BoxList extends Component {
 			<div>
 				{this.state.boxes.map((box) => (
 					<div>
-						<Box color={box.color} width={box.width} height={box.height} />
+						<Box height={box.height} width={box.width} color={box.color} />
 					</div>
 				))}
 			</div>
