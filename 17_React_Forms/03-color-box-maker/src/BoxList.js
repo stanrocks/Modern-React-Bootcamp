@@ -11,11 +11,13 @@ class BoxList extends Component {
 		this.addBox = this.addBox.bind(this);
 		this.removeBox = this.removeBox.bind(this);
 	}
+
 	addBox(box) {
 		this.setState((state) => ({
 			boxes: [ ...state.boxes, box ]
 		}));
 	}
+
 	removeBox(index) {
 		const boxesCopy = [ ...this.state.boxes ];
 		boxesCopy.splice(index, 1);
@@ -28,13 +30,18 @@ class BoxList extends Component {
 		return (
 			<div>
 				{this.state.boxes.map((box, index) => (
-					<div>
-						<Box height={box.height} width={box.width} color={box.color} removeBox={() => this.removeBox(index)} />
-					</div>
+					<Box
+						key={index}
+						height={box.height}
+						width={box.width}
+						color={box.color}
+						removeBox={() => this.removeBox(index)}
+					/>
 				))}
 			</div>
 		);
 	}
+
 	render() {
 		return (
 			<div>
