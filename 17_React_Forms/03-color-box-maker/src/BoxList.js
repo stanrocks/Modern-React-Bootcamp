@@ -1,56 +1,42 @@
-import React, { Component } from 'react';
-import NewBoxForm from './NewBoxForm';
-import Box from './Box';
+import React, { Component } from "react";
+import Box from "./Box";
+import NewBoxForm from "./NewBoxForm";
 
 class BoxList extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			boxes: []
-		};
-		this.addBox = this.addBox.bind(this);
-		this.removeBox = this.removeBox.bind(this);
-	}
-
-	addBox(newBox) {
-		this.setState((state) => ({
-			boxes: [ ...state.boxes, newBox ]
-		}));
-	}
-
-	removeBox(index) {
-		const boxesCopy = [ ...this.state.boxes ];
-		boxesCopy.splice(index, 1);
-		this.setState({
-			boxes: boxesCopy
-		});
-	}
-
-	renderBoxes() {
-		return (
-			<div>
-				{this.state.boxes.map((box, index) => (
-					<Box
-						key={index}
-						height={box.height}
-						width={box.width}
-						color={box.color}
-						removeBox={() => this.removeBox(index)}
-					/>
-				))}
-			</div>
-		);
-	}
-
-	render() {
-		return (
-			<div>
-				<h1>Box Maker Thingy</h1>
-				<NewBoxForm addBox={this.addBox} />
-				{this.renderBoxes()}
-			</div>
-		);
-	}
+  constructor(props) {
+    super(props);
+    this.state = { boxes: [] };
+    this.create = this.create.bind(this);
+  }
+  remove(id) {
+    this.setState({
+      boxes: this.state.boxes.filter(box => box.id !== id)
+    });
+  }
+  create(newBox) {
+    this.setState({
+      boxes: [...this.state.boxes, newBox]
+    });
+  }
+  render() {
+    const boxes = this.state.boxes.map(box => (
+      <Box
+        key={box.id}
+        id={box.id}
+        width={box.width}
+        height={box.height}
+        color={box.color}
+        removeBox={() => this.remove(box.id)}
+      />
+    ));
+    return (
+      <div>
+        <h1>Color Box Maker Thingy</h1>
+        <NewBoxForm createBox={this.create} />
+        {boxes}
+      </div>
+    );
+  }
 }
 
 export default BoxList;
