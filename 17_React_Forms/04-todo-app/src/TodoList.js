@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
 import NewTodoForm from './NewTodoForm';
+import EditTodoForm from './EditTodoForm';
 
 class TodoList extends Component {
 	constructor(props) {
@@ -15,6 +16,18 @@ class TodoList extends Component {
 		});
 	}
 
+	editTodoForm(id) {
+		const todosCopy = [ ...this.state.todos ];
+		todosCopy.forEach((todo, i) => {
+			if ((todo.id = id)) {
+				todosCopy[i].isEdited = true;
+			}
+		});
+		this.setState({
+			todos: todosCopy
+		});
+	}
+
 	createTodo(newTodo) {
 		this.setState({
 			todos: [ ...this.state.todos, newTodo ]
@@ -23,7 +36,13 @@ class TodoList extends Component {
 
 	render() {
 		const todos = this.state.todos.map((todo) => (
-			<Todo key={todo.id} id={todo.id} todo={todo.todo} removeTodo={() => this.removeTodo(todo.id)} />
+			<Todo
+				key={todo.id}
+				id={todo.id}
+				todo={todo.todo}
+				removeTodo={() => this.removeTodo(todo.id)}
+				editTodoForm={() => this.editTodoForm(todo.id)}
+			/>
 		));
 
 		return (
