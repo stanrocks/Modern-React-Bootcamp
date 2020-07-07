@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Todo from './Todo';
 import NewTodoForm from './NewTodoForm';
-import EditTodoForm from './EditTodoForm';
+// import EditTodoForm from './EditTodoForm';
 
 class TodoList extends Component {
 	constructor(props) {
@@ -16,17 +16,16 @@ class TodoList extends Component {
 		});
 	}
 
-	editTodoForm(id) {
-		const todosCopy = [ ...this.state.todos ];
-		todosCopy.forEach((todo, i) => {
-			if ((todo.id = id)) {
-				todosCopy[i].isEdited = true;
-			}
-		});
-		this.setState({
-			todos: todosCopy
-		});
-	}
+	// editTodoForm(id) {
+	// 	console.log(id);
+	// 	const todoCopy = this.state;
+	// 	if ((todoCopy.id = id)) {
+	// 		todoCopy.isEdited = true;
+	// 	}
+	// 	this.setState({
+	// 		todo: todoCopy
+	// 	});
+	// }
 
 	createTodo(newTodo) {
 		this.setState({
@@ -41,7 +40,7 @@ class TodoList extends Component {
 				id={todo.id}
 				todo={todo.todo}
 				removeTodo={() => this.removeTodo(todo.id)}
-				editTodoForm={() => this.editTodoForm(todo.id)}
+				// editTodoForm={() => this.editTodoForm(todo.id)}
 			/>
 		));
 
