@@ -1,54 +1,60 @@
-import React, { Component } from 'react';
-import Card from './Card';
-import axios from 'axios';
+import React, { Component } from "react";
+import Card from "./Card";
+import "./Deck.css";
+import axios from "axios";
+const API_BASE_URL = "https://www.deckofcardsapi.com/api/deck";
 
 class Deck extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { deckId: '', cards: [], remaining: '' };
-		this.handleClick = this.handleClick.bind(this);
-	}
+  constructor(props) {
+    super(props);
+    this.state = { deck: null, drawn: [] };
+    this.getCard = this.getCard.bind(this);
+  }
+  async componentDidMount() {
+    let deck = await axios.get(`${API_BASE_URL}/new/shuffle/`);
+    this.setState({ deck: deck.data });
+  }
+  async getCard() {
+    let deck_id = this.state.deck.deck_id;
+    try {
+      let cardUrl = `${API_BASE_URL}/${deck_id}/draw/`;
+      let cardRes = await axios.get(cardUrl);
+      if (!cardRes.data.success) {
+        throw new Error("No card remaining!");
+      }
+      let card = cardRes.data.cards[0];
+      console.log(cardRes.data);
+      this.setState(st => ({
+        drawn: [
+          ...st.drawn,
+          {
+            id: card.code,
+            image: card.image,
+            name: `${card.value} of ${card.suit}`
+          }
+        ]
+      }));
+    } catch (err) {
+      alert(err);
+    }
+  }
 
-	componentDidMount() {
-		// create new deck (consists 'deck_id' and 'remaining')
-		axios.get('https://deckofcardsapi.com/api/deck/new/shuffle').then((response) => {
-			this.setState({ deckId: response.data.deck_id, remaining: response.data.remaining });
-		});
-	}
-
-	drawCard() {
-		if (this.state.remaining > 0) {
-			axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deckId}/draw`).then((response) => {
-				// console.log(response.data.remaining);
-				// console.log(response.data.cards[0].image);
-				const card = response.data.cards[0];
-				this.setState({
-					remaining: response.data.remaining,
-					cards: [ ...this.state.cards, { image: card.image, value: card.value, suit: card.suit } ]
-				});
-			});
-		}
-	}
-
-	handleClick() {
-		console.log('CLICKED');
-		this.drawCard();
-	}
-
-	render() {
-		const cards = this.state.cards.map((card) => (
-			<Card cardImage={card.image} desc={`${card.value} ${card.suit}`} key={`${card.value} ${card.suit}`} />
-		));
-		const status = this.state.remaining === 0 ? `Deck is empty` : `Remaining: ${this.state.remaining}`;
-		return (
-			<div>
-				<h1>Deck</h1>
-				<button onClick={this.handleClick}>GIMME A CARD!</button>
-				<div>{status}</div>
-				<div>{cards}</div>
-			</div>
-		);
-	}
+  render() {
+    const cards = this.state.drawn.map(c => (
+      <Card key={c.id} name={c.name} image={c.image} />
+    ));
+    return (
+      <div className='Deck'>
+        <h1 className='Deck-title'>♦ Card Dealer ♦</h1>
+        <h2 className='Deck-title subtitle'>
+          ♦ A little demo made with React ♦
+        </h2>
+        <button className='Deck-btn' onClick={this.getCard}>
+          Get Card!
+        </button>
+        <div className='Deck-cardarea'>{cards}</div>
+      </div>
+    );
+  }
 }
-
 export default Deck;
