@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Joke from './Joke';
 import axios from 'axios';
+import './JokeList.css';
 
 class JokeList extends Component {
 	static defaultProps = {
@@ -12,6 +13,7 @@ class JokeList extends Component {
 			jokes: []
 		};
 	}
+
 	async componentDidMount() {
 		let jokes = [];
 		while (jokes.length < this.props.numJokesToGet) {
@@ -24,10 +26,18 @@ class JokeList extends Component {
 		// console.log(jokes);
 		this.setState({ jokes: jokes });
 	}
+
 	render() {
 		return (
 			<div className="JokeList">
-				<h1>Dad Jokes</h1>
+				<div className="JokeList-sidebar">
+					<h1 className="JokeList-title">
+						<span>Dad</span> Jokes
+					</h1>
+					<img src="https://assets.dryicons.com/uploads/icon/svg/8927/0eb14c71-38f2-433a-bfc8-23d9c99b3647.svg" />
+					<button className="JokeList-getmore">New Jokes</button>
+				</div>
+
 				<div className="JokeList-jokes">{this.state.jokes.map((j) => <div>{j}</div>)}</div>
 			</div>
 		);
