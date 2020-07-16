@@ -32,7 +32,9 @@ class JokeList extends Component {
 			jokes.push({ id: uuid(), text: res.data.joke, votes: 0 });
 		}
 		// console.log(jokes);
-		this.setState({ jokes: jokes });
+		this.setState((st) => ({
+			jokes: [ ...st.jokes, ...jokes ]
+		}));
 		window.localStorage.setItem('jokes', JSON.stringify(jokes));
 	}
 
