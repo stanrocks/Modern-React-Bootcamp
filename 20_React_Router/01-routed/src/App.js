@@ -18,6 +18,12 @@ function App() {
 				<NavLink exact activeClassName="active-link" to="/dog">
 					Dog
 				</NavLink>
+				<NavLink exact activeClassName="active-link" to="/dog/r">
+					Dog(r)
+				</NavLink>
+				<NavLink exact activeClassName="active-link" to="/dog/c">
+					Dog(c)
+				</NavLink>
 				<NavLink exact activeClassName="active-link" to="/contact">
 					Contact
 				</NavLink>
@@ -28,7 +34,10 @@ function App() {
 			</nav>
 			{/* <Switch> */}
 			<Route exact path="/" component={About} />
-			<Route exact path="/dog" component={Dog} />
+			{/* Component will instantiate a new Dog every time */}
+			<Route exact path="/dog/c" component={() => <Dog name="Muffins" />} />
+			{/* Render will re-use the existing dog component */}
+			<Route exact path="/dog/r" render={() => <Dog name="Biscuits" />} />
 			<Route exact path="/dog/hater" component={Hater} />
 			<Route exact path="/contact" component={Contact} />
 			{/* </Switch> */}
