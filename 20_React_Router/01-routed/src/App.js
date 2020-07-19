@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import About from './About';
 import Dog from './Dog';
 import Contact from './Contact';
@@ -12,13 +12,19 @@ function App() {
 		<div className="App">
 			<nav className="App-nav">
 				{/* link adds seamless experience - page doesn't reload */}
-				<Link to="/">About</Link>
-				<Link to="/dog">Dog</Link>
-				<Link to="/contact">Contact</Link>
+				<NavLink exact activeClassName="active-link" to="/">
+					About
+				</NavLink>
+				<NavLink exact activeClassName="active-link" to="/dog">
+					Dog
+				</NavLink>
+				<NavLink exact activeClassName="active-link" to="/contact">
+					Contact
+				</NavLink>
 				{/* a uses GET request with page reloading*/}
-				<a href="/dog">Dog</a>
+				{/* <a href="/dog">Dog</a>
 				<a href="/contact">Contact</a>
-				<a href="/">About</a>
+				<a href="/">About</a> */}
 			</nav>
 			{/* <Switch> */}
 			<Route exact path="/" component={About} />
