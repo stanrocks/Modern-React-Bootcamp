@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
+
 import { Link } from 'react-router-dom';
+import sodaImg from './Soda.png';
+import './Soda.css';
 
 class Soda extends Component {
 	render() {
 		return (
 			<div className="Soda">
-				<h1>SODAAAAAA IS MY FAVORITE</h1>
+				<img src={sodaImg} alt="coca cola can" />
+
+				<h1>SODAAAAA IS MY FAVORITE</h1>
 				<h3>But now I drink sparkling water instead</h3>
-				<p>I still miss Soda</p>
+				<p>(I still miss Soda)</p>
 				<Link to="/">Go Back</Link>
+
+				<img src={sodaImg} alt="coca cola can" />
 			</div>
 		);
 	}
