@@ -10,7 +10,10 @@ function App() {
 		<div className="App">
 			<Switch>
 				{/* Home route */}
-				<Route exact path="/" render={() => <FoodSearch />} />
+				{/* using render */}
+				{/* <Route exact path="/" render={(routeProps) => <FoodSearch {...routeProps} />} /> */}
+				{/* using component */}
+				<Route exact path="/" component={FoodSearch} />
 
 				{/* ========== */}
 				{/* URL params */}
