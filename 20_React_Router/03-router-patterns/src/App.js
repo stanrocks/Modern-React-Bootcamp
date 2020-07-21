@@ -1,6 +1,7 @@
 import React from 'react';
 import Food from './Food';
 import Meal from './Meal';
+import FoodSearch from './FoodSearch';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
 
@@ -9,7 +10,7 @@ function App() {
 		<div className="App">
 			<Switch>
 				{/* Home route */}
-				<Route exact path="/" render={() => <h1>Home Page!</h1>} />
+				<Route exact path="/" render={() => <FoodSearch />} />
 
 				{/* ========== */}
 				{/* URL params */}
