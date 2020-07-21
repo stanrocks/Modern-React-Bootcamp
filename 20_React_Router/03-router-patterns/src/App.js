@@ -1,6 +1,7 @@
 import React from 'react';
 import Food from './Food';
 import Meal from './Meal';
+import Navbar from './Navbar';
 import FoodSearch from './FoodSearch';
 import { Route, Switch } from 'react-router-dom';
 import './App.css';
@@ -8,6 +9,8 @@ import './App.css';
 function App() {
 	return (
 		<div className="App">
+			{/* try to log in */}
+			<Navbar />
 			<Switch>
 				{/* Home route */}
 				{/* using render */}
