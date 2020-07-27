@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './DogDetails.css';
 import { Link } from 'react-router-dom';
+import './DogDetails.css';
 
 class DogDetails extends Component {
 	render() {
