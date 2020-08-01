@@ -99,6 +99,11 @@ class NewPaletteForm extends Component {
 		this.setState({ currentColor: newColor.hex });
 	}
 
+	handleChange = (newColor, event) => {
+		// using this for proper picker animation
+		this.setState({ currentColor: newColor.hex });
+	};
+
 	addNewColor() {
 		this.setState({ colors: [ ...this.state.colors, this.state.currentColor ] });
 	}
@@ -154,7 +159,11 @@ class NewPaletteForm extends Component {
 							Random Color
 						</Button>
 					</div>
-					<ChromePicker color={this.state.currentColor} onChangeComplete={this.updateCurrentColor} />
+					<ChromePicker
+						color={this.state.currentColor}
+						onChange={this.handleChange}
+						onChangeComplete={this.updateCurrentColor}
+					/>
 					<Button
 						variant="contained"
 						color="primary"
