@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,7 +15,7 @@ import { ChromePicker } from 'react-color';
 
 const drawerWidth = 400;
 
-const useStyles = makeStyles((theme) => ({
+const styles = (theme) => ({
 	root: {
 		display: 'flex'
 	},
@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
 		})
 	},
 	menuButton: {
-		marginRight: theme.spacing(2)
+		marginLeft: 12,
+		marginRight: 20
 	},
 	hide: {
 		display: 'none'
@@ -49,14 +50,13 @@ const useStyles = makeStyles((theme) => ({
 	drawerHeader: {
 		display: 'flex',
 		alignItems: 'center',
-		padding: theme.spacing(0, 1),
-		// necessary for content to be below app bar
+		padding: '0 8px',
 		...theme.mixins.toolbar,
 		justifyContent: 'flex-end'
 	},
 	content: {
 		flexGrow: 1,
-		padding: theme.spacing(3),
+		padding: theme.spacing.unit * 3,
 		transition: theme.transitions.create('margin', {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen
@@ -70,82 +70,86 @@ const useStyles = makeStyles((theme) => ({
 		}),
 		marginLeft: 0
 	}
-}));
+});
 
-function NewPaletteForm() {
-	const classes = useStyles();
-	const [ open, setOpen ] = React.useState(false);
-
-	const handleDrawerOpen = () => {
-		setOpen(true);
+class NewPaletteForm extends Component {
+	state = {
+		open: false
 	};
 
-	const handleDrawerClose = () => {
-		setOpen(false);
+	handleDrawerOpen = () => {
+		this.setState({ open: true });
 	};
 
-	return (
-		<div className={classes.root}>
-			<CssBaseline />
-			<AppBar
-				position="fixed"
-				className={clsx(classes.appBar, {
-					[classes.appBarShift]: open
-				})}
-			>
-				<Toolbar>
-					<IconButton
-						color="inherit"
-						aria-label="open drawer"
-						onClick={handleDrawerOpen}
-						edge="start"
-						className={clsx(classes.menuButton, open && classes.hide)}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="h6" noWrap>
-						Persistent drawer
-					</Typography>
-				</Toolbar>
-			</AppBar>
-			<Drawer
-				className={classes.drawer}
-				variant="persistent"
-				anchor="left"
-				open={open}
-				classes={{
-					paper: classes.drawerPaper
-				}}
-			>
-				<div className={classes.drawerHeader}>
-					<IconButton onClick={handleDrawerClose}>
-						<ChevronLeftIcon />
-					</IconButton>
-				</div>
-				<Divider />
-				<Typography variant="h4">Design Your Palette</Typography>
-				<div>
-					<Button variant="contained" color="secondary">
-						Clear Palette
-					</Button>
+	handleDrawerClose = () => {
+		this.setState({ open: false });
+	};
+
+	render() {
+		const { classes } = this.props;
+		const { open } = this.state;
+
+		return (
+			<div className={classes.root}>
+				<CssBaseline />
+				<AppBar
+					position="fixed"
+					className={classNames(classes.appBar, {
+						[classes.appBarShift]: open
+					})}
+				>
+					<Toolbar disableGutters={!open}>
+						<IconButton
+							color="inherit"
+							aria-label="Open drawer"
+							onClick={this.handleDrawerOpen}
+							className={classNames(classes.menuButton, open && classes.hide)}
+						>
+							<MenuIcon />
+						</IconButton>
+						<Typography variant="h6" color="inherit" noWrap>
+							Persistent drawer
+						</Typography>
+					</Toolbar>
+				</AppBar>
+				<Drawer
+					className={classes.drawer}
+					variant="persistent"
+					anchor="left"
+					open={open}
+					classes={{
+						paper: classes.drawerPaper
+					}}
+				>
+					<div className={classes.drawerHeader}>
+						<IconButton onClick={this.handleDrawerClose}>
+							<ChevronLeftIcon />
+						</IconButton>
+					</div>
+					<Divider />
+					<Typography variant="h4">Design Your Palette</Typography>
+					<div>
+						<Button variant="contained" color="secondary">
+							Clear Palette
+						</Button>
+						<Button variant="contained" color="primary">
+							Random Color
+						</Button>
+					</div>
+					<ChromePicker color="purple" onChangeComplete={(newColor) => console.log(newColor)} />
 					<Button variant="contained" color="primary">
-						Random Color
+						Add Color
 					</Button>
-				</div>
-				<ChromePicker color="purple" onChangeComplete={(newColor) => console.log(newColor)} />
-				<Button variant="contained" color="primary">
-					Add Color
-				</Button>
-			</Drawer>
-			<main
-				className={clsx(classes.content, {
-					[classes.contentShift]: open
-				})}
-			>
-				<div className={classes.drawerHeader} />
-			</main>
-		</div>
-	);
+				</Drawer>
+				<main
+					className={classNames(classes.content, {
+						[classes.contentShift]: open
+					})}
+				>
+					<div className={classes.drawerHeader} />
+				</main>
+			</div>
+		);
+	}
 }
-
-export default NewPaletteForm;
+export default withStyles(styles, { withTheme: true })(NewPaletteForm);
