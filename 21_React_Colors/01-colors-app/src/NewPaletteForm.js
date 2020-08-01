@@ -90,12 +90,12 @@ class NewPaletteForm extends Component {
 	}
 
 	componentDidMount() {
-		ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
-			this.state.colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase());
-		});
-		ValidatorForm.addValidationRule('isColorUnique', (value) => {
-			this.state.colors.every(({ color }) => color !== this.state.currentColor);
-		});
+		ValidatorForm.addValidationRule('isColorNameUnique', (value) =>
+			this.state.colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
+		);
+		ValidatorForm.addValidationRule('isColorUnique', (value) =>
+			this.state.colors.every(({ color }) => color !== this.state.currentColor)
+		);
 	}
 
 	handleDrawerOpen = () => {
