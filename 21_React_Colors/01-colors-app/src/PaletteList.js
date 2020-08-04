@@ -14,6 +14,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles/PaletteListStyles';
 import blue from '@material-ui/core/colors/blue';
 import red from '@material-ui/core/colors/red';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 class PaletteList extends Component {
 	constructor(props) {
@@ -49,18 +50,20 @@ class PaletteList extends Component {
 						<h1 className={classes.heading}>React Colors</h1>
 						<Link to="/palette/new">Create Palette</Link>
 					</nav>
-					<div className={classes.palettes}>
+					<TransitionGroup className={classes.palettes}>
 						{palettes.map((palette) => (
-							<MiniPalette
-								{...palette}
-								handleClick={() => this.goToPalette(palette.id)}
-								// handleDelete={deletePalette}
-								openDialog={this.openDialog}
-								key={palette.id}
-								id={palette.id}
-							/>
+							<CSSTransition key={palette.id} classNames="fade" timeout={500}>
+								<MiniPalette
+									{...palette}
+									handleClick={() => this.goToPalette(palette.id)}
+									// handleDelete={deletePalette}
+									openDialog={this.openDialog}
+									key={palette.id}
+									id={palette.id}
+								/>
+							</CSSTransition>
 						))}
-					</div>
+					</TransitionGroup>
 				</div>
 				<Dialog open={openDeleteDialog} aria-labelledby="delete-dialog-title" onClose={this.closeDialog}>
 					<DialogTitle id="delete-dialog-title">Delete This Palette?</DialogTitle>
