@@ -8,11 +8,10 @@ export default {
 		},
 		'.fade-exit-active': {
 			opacity: 0,
-			transition: 'opacity 0.5s ease-out'
+			transition: 'opacity 500ms ease-out'
 		}
 	},
 	root: {
-		backgroundColor: 'blue',
 		height: '100vh',
 		display: 'flex',
 		alignItems: 'flex-start',
@@ -42,8 +41,8 @@ export default {
 		display: 'flex',
 		width: '100%',
 		justifyContent: 'space-between',
-		color: 'white',
 		alignItems: 'center',
+		color: 'white',
 		'& a': {
 			color: 'white'
 		}
@@ -53,13 +52,13 @@ export default {
 		width: '100%',
 		display: 'grid',
 		gridTemplateColumns: 'repeat(3, 30%)',
-		gap: '2.5rem',
+		gridGap: '2.5rem',
 		[sizes.down('md')]: {
 			gridTemplateColumns: 'repeat(2, 50%)'
 		},
 		[sizes.down('xs')]: {
 			gridTemplateColumns: 'repeat(1, 100%)',
-			gap: '1.4rem'
+			gridGap: '1.4rem'
 		}
 	}
 };

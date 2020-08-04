@@ -9,10 +9,9 @@ export default {
 		display: 'inline-block',
 		position: 'relative',
 		cursor: 'pointer',
-		marginBottom: '-4px',
+		marginBottom: '-3.5px',
 		'&:hover button': {
-			opacity: '1',
-			transition: '0.5s'
+			opacity: 1
 		},
 		[sizes.down('lg')]: {
 			width: '25%',
@@ -54,8 +53,8 @@ export default {
 		display: 'inline-block',
 		top: '50%',
 		left: '50%',
-		marginLeft: '-50px' /* half of width */,
-		marginTop: '-15px' /* half of height */,
+		marginLeft: '-50px',
+		marginTop: '-15px',
 		textAlign: 'center',
 		outline: 'none',
 		background: 'rgba(255, 255, 255, 0.3)',
@@ -64,7 +63,7 @@ export default {
 		textTransform: 'uppercase',
 		border: 'none',
 		textDecoration: 'none',
-		opacity: '0'
+		opacity: 0
 	},
 	boxContent: {
 		position: 'absolute',
@@ -79,11 +78,11 @@ export default {
 	},
 	copyOverlay: {
 		opacity: '0',
-		transform: 'scale(0.1)',
 		zIndex: '0',
 		width: '100%',
 		height: '100%',
-		transition: 'transform 0.6s ease-in-out'
+		transition: 'transform 0.6s ease-in-out',
+		transform: 'scale(0.1)'
 	},
 	showOverlay: {
 		opacity: '1',
@@ -98,9 +97,9 @@ export default {
 		top: '0',
 		bottom: '0',
 		display: 'flex',
-		flexDirection: 'column',
 		alignItems: 'center',
 		justifyContent: 'center',
+		flexDirection: 'column',
 		fontSize: '4rem',
 		transform: 'scale(0.1)',
 		opacity: '0',
@@ -108,14 +107,14 @@ export default {
 		'& h1': {
 			fontWeight: '400',
 			textShadow: '1px 2px black',
-			background: 'rgba(255,255,255,0.2)',
+			background: 'rgba(255, 255, 255, 0.2)',
 			width: '100%',
 			textAlign: 'center',
 			marginBottom: '0',
 			padding: '1rem',
 			textTransform: 'uppercase',
 			[sizes.down('xs')]: {
-				fontSize: '5rem'
+				fontSize: '6rem'
 			}
 		},
 		'& p': {

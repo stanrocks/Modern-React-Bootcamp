@@ -32,7 +32,7 @@ const styles = {
 		left: '0px',
 		bottom: '0px',
 		padding: '10px',
-		color: 'rgba(0,0,0,0.5)',
+		color: 'rgba(0, 0, 0, 0.5)',
 		letterSpacing: '1px',
 		textTransform: 'uppercase',
 		fontSize: '12px',
