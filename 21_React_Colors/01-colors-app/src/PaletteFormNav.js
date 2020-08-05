@@ -42,7 +42,8 @@ class PaletteFormNav extends Component {
 		const { newPaletteName } = this.state;
 		return (
 			<div className={classes.root}>
-				<CssBaseline />
+				{/* this will broke smooth transition between pages */}
+				{/* <CssBaseline /> */}
 
 				<AppBar
 					position="fixed"
