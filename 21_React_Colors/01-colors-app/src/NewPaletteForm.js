@@ -57,8 +57,26 @@ class NewPaletteForm extends Component {
 	addRandomColor() {
 		// pick random color from existing palettes
 		const allColors = this.props.palettes.map((p) => p.colors).flat();
-		const rand = Math.floor(Math.random() * allColors.length);
-		const randomColor = allColors[rand];
+		let rand;
+		let randomColor;
+		let isDuplicateColor = true;
+		while (isDuplicateColor) {
+			// Bug:
+			// When User deleted all palettes but first one ("Material UI Colors"),
+			// which has only 19 colors or less;
+			// AND
+			// User is adding colors to new palette with "random color" button only.
+			// This will lead to situation, when there is no any unique color left
+			// (we need at least 20 unique colors to fill whole palette
+			// using "random color" button), "isDuplicateColor" will be truthful forever,
+			// while loop will run infinitely.
+			rand = Math.floor(Math.random() * allColors.length);
+			console.log(allColors.length);
+			console.log(rand);
+			randomColor = allColors[rand];
+			isDuplicateColor = this.state.colors.some((color) => color.name === randomColor.name);
+			console.log(isDuplicateColor);
+		}
 		this.setState({ colors: [ ...this.state.colors, randomColor ] });
 	}
 
