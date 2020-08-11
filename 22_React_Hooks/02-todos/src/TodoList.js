@@ -10,12 +10,12 @@ function TodoList(props) {
 		<Paper>
 			<List>
 				{props.todos.map((todo) => (
-          <>
-					<ListItem>
-						<ListItemText>{todo.task}</ListItemText>
-					</ListItem>
-          <Divider />
-          </>
+					<React.Fragment>
+						<ListItem>
+							<ListItemText>{todo.task}</ListItemText>
+						</ListItem>
+						<Divider />
+					</React.Fragment>
 				))}
 			</List>
 		</Paper>
