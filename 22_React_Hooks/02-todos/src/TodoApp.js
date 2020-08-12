@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+// import useLocalStorageState from './hooks/useLocalStorageState';
+
 import useTodoState from './hooks/useTodoState';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
@@ -9,19 +11,18 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Grid from '@material-ui/core/Grid';
 
 function TodoApp() {
-  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
-  // const initialTodos = [
-  //   { id: 1, task: 'Clean Fishtank', completed: false },
-  //   { id: 2, task: 'Wash Car', completed: true },
-  //   { id: 3, task: 'Grow Beard', completed: false },
-  // ];
+  const initialTodos = [
+    { id: 1, task: 'Clean Fishtank', completed: false },
+    { id: 2, task: 'Wash Car', completed: true },
+    { id: 3, task: 'Grow Beard', completed: false },
+  ];
   const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
     initialTodos
   );
 
-  useEffect(() => {
-    window.localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+  // other example (to reuse useLocalStorageState hooks):
+  // const [mood, setMood] = useLocalStorageState('mood', 'happy');
+  // console.log(mood);
 
   return (
     <Paper
@@ -47,6 +48,7 @@ function TodoApp() {
             toggleTodo={toggleTodo}
             editTodo={editTodo}
           />
+          {/* <button onClick={() => setMood('angry')}>Click to get angry</button> */}
         </Grid>
       </Grid>
     </Paper>
