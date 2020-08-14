@@ -19,6 +19,3 @@ function useLocalStorageState(key, defaultVal) {
 }
 
 export default useLocalStorageState;
-
-// example:
-// const [todos, setTodos] = useLocalStorageState('todos', []);
