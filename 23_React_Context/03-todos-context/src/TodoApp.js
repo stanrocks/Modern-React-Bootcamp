@@ -1,7 +1,4 @@
 import React from 'react';
-// import useLocalStorageState from './hooks/useLocalStorageState';
-
-import useTodoState from './hooks/useTodoState';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 import Typography from '@material-ui/core/Typography';
@@ -12,19 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import { TodosProvider } from './contexts/todos.context';
 
 function TodoApp() {
-  const initialTodos = [
-    { id: 1, task: 'Clean Fishtank', completed: false },
-    { id: 2, task: 'Wash Car', completed: true },
-    { id: 3, task: 'Grow Beard', completed: false },
-  ];
-  const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(
-    initialTodos
-  );
-
-  // other example (to reuse useLocalStorageState hooks):
-  // const [mood, setMood] = useLocalStorageState('mood', 'happy');
-  // console.log(mood);
-
   return (
     <Paper
       style={{
@@ -43,13 +27,8 @@ function TodoApp() {
       <Grid container justify="center" style={{ marginTop: '1rem' }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodosProvider>
-            <TodoForm addTodo={addTodo} />
-            <TodoList
-              todos={todos}
-              removeTodo={removeTodo}
-              toggleTodo={toggleTodo}
-              editTodo={editTodo}
-            />
+            <TodoForm />
+            <TodoList />
           </TodosProvider>
         </Grid>
       </Grid>
