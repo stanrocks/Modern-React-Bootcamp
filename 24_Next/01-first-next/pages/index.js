@@ -4,7 +4,10 @@ const Index = () => {
   return (
     <div>
       <Link href="/about">
-        <a>About Page</a>
+        <button>About Page</button>
+      </Link>
+      <Link href="/about">
+        <span>Click me!</span>
       </Link>
       <Link href="/contact">
         <a>Contact</a>
