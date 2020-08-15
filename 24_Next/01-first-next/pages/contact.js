@@ -1,7 +1,9 @@
+import Navbar from '../components/Navbar';
+
 const ContactPage = () => {
-  console.log('RUNNING CONTACT COMPONENT');
   return (
     <div>
+      <Navbar />
       <h1>Contact Page</h1>
       <p>Do not contact us ever!</p>
     </div>

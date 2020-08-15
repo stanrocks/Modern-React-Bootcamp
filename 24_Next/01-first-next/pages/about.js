@@ -1,5 +1,11 @@
+import Navbar from '../components/Navbar';
+
 const AboutPage = () => {
-  console.log('RUNNING ABOUT COMPONENT');
-  return <h1>THIS IS THE ABOUT PAGE!!!</h1>;
+  return (
+    <>
+      <Navbar />
+      <h1>THIS IS THE ABOUT PAGE!!!</h1>
+    </>
+  );
 };
 export default AboutPage;
